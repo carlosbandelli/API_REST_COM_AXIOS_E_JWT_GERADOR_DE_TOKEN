@@ -28,7 +28,9 @@ var DB = {
             year: 2021,
             price: 20
         }
-    ]
+    ],
+    users
+
 }
 
 
@@ -42,9 +44,17 @@ app.post("/auth",(req, res) => {
 
             if(user.password == password){
                 res.status = 200
-                res.json
+                res.json({token: "TOKEN FALSO!"})
+            }else{
+                res.status = 401
+                res.json({err: "CREDENCIAIS INVÁLIDAS"})
             }
+        }else{
+            res.status = 404
+            res.json({err: "O E-MAIL ENVIADO NÃO EXISTE NA BASE DE DADOS"})
         }
+    }else{
+        
     }
 })
 
