@@ -29,34 +29,26 @@ var DB = {
             price: 20
         }
     ],
-    users
+    users:[
+        {
+            id: 1,
+            name: "Carlos Bandelli",
+            email: "carlosbandelliv@gmail.com",
+            password: "nodejs<3"
+        },
+        {
+           
+            id: 20,
+            name: "Bruno Bandelli",
+            email: "BrunoBandelli@gmail.com",
+            password: "java123"
+
+        }
+    ]
 
 }
 
 
-app.post("/auth",(req, res) => {
-    var {email, password} = req.body
-
-    if(email != undefined){
-
-        var user = DB.users.find(u => u.email == email)
-        if(user != undefined){
-
-            if(user.password == password){
-                res.status = 200
-                res.json({token: "TOKEN FALSO!"})
-            }else{
-                res.status = 401
-                res.json({err: "CREDENCIAIS INVÁLIDAS"})
-            }
-        }else{
-            res.status = 404
-            res.json({err: "O E-MAIL ENVIADO NÃO EXISTE NA BASE DE DADOS"})
-        }
-    }else{
-        
-    }
-})
 
 
 
@@ -149,6 +141,35 @@ app.put("/game/:id", (req, res) => {
     }
 })
 
-app.listen(45678,()=> {
+app.post("/auth",(req, res) => {
+    
+    var {email, password} = req.body
+
+    if(email != undefined){
+
+        var user = DB.users.find(u => u.email == email)
+        if(user != undefined){
+
+            if(user.password == password){
+                res.status(200)
+                res.json({token: "TOKEN FALSO!"})
+            }else{
+                res.status(401)
+                res.json({err: "CREDENCIAIS INVÁLIDAS"})
+            }
+        }else{
+            res.status(404)
+            res.json({err: "O E-MAIL ENVIADO NÃO EXISTE NA BASE DE DADOS"})
+        }
+    }else{
+        res.status(400)
+        res.send({err: "O E-MAIL ENVIADO É INVALIDO"})
+        
+    }
+})
+
+
+
+app.listen(45679,()=> {
     console.log("API RODANDO!")
 })
