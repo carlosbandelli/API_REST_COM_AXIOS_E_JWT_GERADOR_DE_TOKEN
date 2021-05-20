@@ -1,0 +1,7 @@
+parar toda a requisição que for feita pela api, precisa mandar o token junto,
+que ele recebeu anteriormente.
+voce é um usuario que vai consumir uma api, voce manda seu login e senha, ea api vai ver se esta certo o login e senha
+se tiver certo ela vai gerar um token para voce, e nisso voce anota ele e para cada requisição subsequente que voce for fazer nessa api voce manda esse token junto.
+por que esse token que voce recebeu é a porta de entrada sua da API.
+Lembrando a API só vai aceitar token que são validos, que foram geradas por ela
+Imagine que sua rota é um bau a pessoa só consegui acessar essa rota com a chave do bau
