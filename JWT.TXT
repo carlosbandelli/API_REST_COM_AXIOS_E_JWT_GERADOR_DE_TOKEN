@@ -4,4 +4,5 @@ voce é um usuario que vai consumir uma api, voce manda seu login e senha, ea ap
 se tiver certo ela vai gerar um token para voce, e nisso voce anota ele e para cada requisição subsequente que voce for fazer nessa api voce manda esse token junto.
 por que esse token que voce recebeu é a porta de entrada sua da API.
 Lembrando a API só vai aceitar token que são validos, que foram geradas por ela
-Imagine que sua rota é um bau a pessoa só consegui acessar essa rota com a chave do bau
+Imagine que sua rota é um bau a pessoa só consegui acessar essa rota com a chave do bau.
+Para fazer a instalação do jwt, precisamos instalar uma bibliote do node jsonwebtoken
