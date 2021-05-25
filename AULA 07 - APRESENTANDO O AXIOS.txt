@@ -1,0 +1,62 @@
+AULA 07 - APRESENTANDO O AXIOS
+
+FERRAMENTAS PARA CONSUMIR API:
+ESPECIFICAMENTE NO FRONT END DA WEB
+AJAX PURO DO JS
+AJAX COM JQUERI
+AFETE API DO JS
+AXIOS
+
+O AXIOS É UMA BIBLIOTECA FOCADA EM FAZER REQUISIÇÕES HTTP.
+DA SUPORTA PARA TODOS OS NAVEGADORES.
+EXISTE VARIAS FORMAS DE INSTALAR O AXIOS.
+
+1° CRIAR PASTA:
+Consumo de API
+
+2° CRIAR UM ARQUIVO DENTRO DESSA PASTA:
+index.html
+
+3° POR A BASE DO HTML ( ! )
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Games</title>
+</head>
+<body>
+    
+</body>
+
+</html>
+
+
+4° AGORA IREMOS COLOCAR O AXIOS,
+VÁ NO LINK: https://github.com/axios/axios
+E LÁ EM BAIXO TEM UM LINK CDN PARA JS DO FRONT END
+PARA O AXIOS: 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+E VAMOS POR ESSE CDN DIRETO NO HTML(index.html), FICARÁ ASSIM:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Games</title>
+</head>
+<body>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</html>
+
+PRONTO O AXIOS ESTÁ INSTALADO NO HTML,
+E JÁ DA PARA CONSUMIR DADOS VIA HTTP.
+

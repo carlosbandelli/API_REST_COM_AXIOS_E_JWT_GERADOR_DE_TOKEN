@@ -1,0 +1,162 @@
+AULA 08 - CONSUMO DE API E CORS
+
+COM O AXIES INSTALADO.
+PARA SABER SE ELE FOI INSTALADO CORRETAMENTE,
+EM BAIXO DO SCRIPT DELTE FAÇA O SEGUINTE:
+(index.html)
+
+<script>
+    console.log(axios);
+</script>
+
+FICRÁ ASSIM:
+
+		.
+		.
+		.
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    console.log(axios);
+</script>
+</html>
+
+AGORA EXECUTE: nodemon index.js
+VÁ NO ARQUIVO HTML: index.html
+CLIQUE EM INSPENCIONAR E DEPOIS EM CONSOLE,
+SE ELE RETORNAR ALGO DIFERENTE DE UNDEFINED
+
+POR EXEMPLO:
+
+Live reload enabled.
+index.html:51 ƒ (){for(var n=new Array(arguments.length),r=0;r<n.length;r++)n[r]=arguments[r];return e.apply(t,n)}
+
+*VER FOTO*
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+A PRIMEIRA OPERAÇÃO QUE VAMOS APRENDER A FAZER É A DE LEITURA,
+ENTÃO NA NOSSA API DE GAMES, NOS TEMOS O ENDPOINT: /games
+E ESSE END POINT RETORNA PARA NÓS A LISTA DE TODOS OS GAMES
+QUE ESTÃO SALVOS NO SISTEMA.
+
+ENTÃO BASICAMENTE IREMOS FAZER ESSE FRONT END REALIZAR UMA REQUISIÇÃO,
+PARA O ENDPOINT DA NOSSA API, PARA QUE O FRONT END, RECEBA ESSES DADOS
+NELE.
+
+ENTÃO FAREMOS UMA REQUISIÇÃO ATRAVÉS DO AXIOS PARA O END POINT /games
+
+PARA FAZER UMA REQUISIÇÃO, VOCÊ DEVE FAZER O SEGUINTE:
+
+1° CHAMAR O AXIOS E DEPOIS ESCOLHER QUAL METODO HTTP VOCÊ QUER UTILIZAR PARA
+FAZER ESSA REQUISIÇÃO PARA UMA CERTA API.:
+
+    axios.get()
+
+E DENTRO DESSE GET NÓS IREMOS POR SIMPLESMENTE O URL DA REQUISIÇÃO, ENTÃO
+PODEMOS COPIAR LITERALMENTE A URL DA API, DESSA MANEIRA:
+
+    axios.get("http://localhost:45678/games")
+
+E ESSE GET ELE É UMA PROMISE, E UMA PROMISE ELA PODE DAR CERTO OU ERRAD ( then e catch )
+FICARÁ ASSIM:
+
+	SE DER CERTO ELE VAI RETORNAR OS DADOS DA REQUISIÇÃO DA API.
+
+FICARÁ ASSIM:
+
+
+    axios.get("http://localhost:45678/games").then(response => {
+        console.log(response);
+    }).catch(error => {
+        console.log(error)
+    });
+
+AGORA FEITO ISSO, IREMOS RECARREGAR AS PAGINAS E VER OQUE APARECE NO CONSOLE DO HTML
+
+AO ABRIR, VOCÊ IRÁ VER UM ERRO:
+
+index.html:1 Access to XMLHttpRequest at 'http://localhost:45678/games' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+index.html:54 Error: Network Error
+    at e.exports (isAxiosError.js:10)
+    at XMLHttpRequest.l.onerror (isAxiosError.js:10)
+isAxiosError.js:10 GET http://localhost:45678/games net::ERR_FAILED
+(anonymous) @ isAxiosError.js:10
+e.exports @ isAxiosError.js:10
+e.exports @ isAxiosError.js:10
+Promise.then (async)
+r.request @ isAxiosError.js:10
+r.<computed> @ isAxiosError.js:10
+(anonymous) @ isAxiosError.js:10
+(anonymous) @ index.html:51
+
+
+*VER FOTO*
+
+ELE FALA QUE A REQUISIÇÃO FOI BLOQUEADA POR UMA POLITICA DE CORS
+
+CORS É O MECANIMSMO DE SEGURANÇA QUE EXISTEM EM APLICAÇÕES 
+HTTP/WEB QUE BLOQUEIA REQUISIÇÕES FEITAS DE MANEIRA EXTERNAS.
+
+OU SEJÁ, EU TENHO UMA API DE GAMES RODANDO NO ENDEREÇO /games
+E EU TO FAZERNDO UMA REQUISIÇÃO PARA ESSA API DE OUTRO LUGAR,
+DO MEU ARQUIVO HTML, OU SEJÁ ESTOU FAZENDO UMA REQUISIÇÃO EXTERNA,
+ENTÃO O CORS BLOQUEOU, POR QUE POR PADRÃO ELA VEM BLOQUEADO.
+
+QUANDO ESTAMOS LIDANDO COM CONSUMO DE API DURANTE O DESENVOLVIMENTO,
+NÓS TEMOS QUE ATIVAR ESSE CORS,
+
+
+2°PARA INSTALAR O CORS NO NODE.JS INSTALE A BIBLIOTECA NO CONSOLE.:
+
+	npm install cors --save
+
+APÓS INSTALADO, IMPORTE NO ARQUIVO PRINCIPAL: index.js
+
+const cors = require("cors");
+
+app.use(cors());
+
+PRONTO O CORS JÁ ESTÁ SENDO UTILIZADO NA SUA APLICAÇÃO, AGORA VOCÊ PODE
+RODAR NOVAMENTE A API E RECARREGAR AS PAGINAS.
+
+EXECUTE: nodemon index.js
+LÁ NO INSPENCIONAR CONSOLE, VOJÁ QUE NÃO ESTA DANDO MAIS ERRO,
+ESTÁ APARECENDO O SEGUINTE:
+
+{data: Array(3), status: 200, statusText: "OK", headers: {…}, config: {…}, …}
+
+A RESPONSE DO AXIOS É DIVIDO EM 3 PARTES PRINCIPAIS,
+OS DADOS: Array(3), OS ESTATUS: status: 200 E O ESTATUS TEXT: statusText: "OK"
+
+*VER FOTO*
+
+E SE VOCÊ ABRIR, E IR EM DATA, VOCÊ VERÁ A LISTA DOS GAMES CADASTRADO NA APIT.:
+E EU CONSEGUI ISSO ATRAVÉS DE UMA AÇÃO DE CONSUMO, OU SEJÁ EU MANDEI O AXIOS
+CONSUMIR A URL DA API
+
+
+{data: Array(3), status: 200, statusText: "OK", headers: {…}, config: {…}, …}
+config: {url: "http://localhost:45678/games", method: "get", headers: {…}, transformRequest: Array(1), transformResponse: Array(1), …}
+data: Array(3)
+0: {id: 23, title: "Call Of Duty BO: II", year: 2014, price: 40}
+1: {id: 65, title: "GOD OF WAR", year: 2010, price: 50}
+2: {id: 2, title: "LEAGUE OF LEGENDS", year: 2017, price: 15}
+length: 3
+__proto__: Array(0)
+headers: {content-length: "178", content-type: "application/json; charset=utf-8"}
+request: XMLHttpRequest {readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, onreadystatechange: ƒ, …}
+status: 200
+statusText: "OK"
+__proto__: Object
+
+
+*VER FOTO*
+
+
+
+A API É COMO SE FOSSE UM PONTO DE DESTRIBUIÇÃO DE DADOS, QUE QUALQUER PESSOA
+PODE FAZER CONSUMO PARA ELA.
+
+COM ESSES DADOS, NÓS PODEMOS LISTAR NA TELA.
+
