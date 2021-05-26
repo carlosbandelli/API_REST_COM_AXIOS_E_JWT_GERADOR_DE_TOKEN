@@ -6,3 +6,8 @@ por que esse token que voce recebeu é a porta de entrada sua da API.
 Lembrando a API só vai aceitar token que são validos, que foram geradas por ela
 Imagine que sua rota é um bau a pessoa só consegui acessar essa rota com a chave do bau.
 Para fazer a instalação do jwt, precisamos instalar uma bibliote do node jsonwebtoken
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjYXJsb3NiYW5kZWxsaXZAZ21haWwuY29tIiwiaWF0IjoxNjIxOTg3MTgwLCJleHAiOjE2MjIxNTk5ODB9.KyKUpSvbv0ecVY_1axITEDPwaNDRhMqeE5hlVhM0P0o"
+
+aplicações reais: em um app movel salva no banco de dados ou na web pelo storage ou cookies
+para fazer a autorização do token vá em postman aba authorization e mude o type para bearer token e use esse token que foi gerado na onde ta escrito token

@@ -6,12 +6,38 @@ const jwt = require("jsonwebtoken")
 
 const JWTSecret = "huashuashuas"
 
-
 app.use(cors())
 app.use(express.urlencoded({extend: false}))
 app.use(express.json())
 
+function auth(req, res, next){ // middleware ´euma função executada antes da sua requisição ser executada
 
+    const authToken = req.headers['authorization']
+
+    if(authToken != undefined){
+
+        const bearer = authToken.split(' ')
+        var token = bearer[1] //para pegar a posição de numero 1 no array
+        
+        jwt.verify(token,JWTSecret,(err, data) => {
+            if(err){
+                res.status(401)
+                res.json({err: "Token inválido!"})
+            }else{
+                req.token = token
+                req.loggerUser = {id: data.id,email: data.email}
+                req.empresa = 'Si-Fy'
+                next()
+            }
+        })
+        
+    }else{
+        res.status(401)
+        res.json({err:"Token invalido!"})
+    }
+
+    
+}
 
 var DB = {
     games:[
@@ -57,12 +83,13 @@ var DB = {
 
 
 
-app.get("/games", (req,res) => { //get para pegar dados, quandoa rota for acessada,ela pega todas as listagens
+app.get("/games",auth,(req,res) => { //get para pegar dados, quandoa rota for acessada,ela pega todas as listagens
+    
     res.statusCode = 200 //significa que arota foi criado com sucesso
-    res.json(DB.games) //vai acessar a listagem de games, pois o DB.games é a variavel
+    res.json({empresa: req.empresa , user: req.loggerUser , games: DB.games}) //vai acessar a listagem de games, pois o DB.games é a variavel
 })
 
-app.get("/game/:id", (req,res) =>{
+app.get("/game/:id",auth, (req,res) =>{
     if(isNaN(req.params.id)){
         res.sendStatus(400) // status que retorno quando ele não usar um numero
     }else{
@@ -80,7 +107,7 @@ app.get("/game/:id", (req,res) =>{
     }
 })
 
-app.post("/game",(req,res) => { //pode existir a mesma rota porem com metodos diferentes estilo GET E POST
+app.post("/game",auth,(req,res) => { //pode existir a mesma rota porem com metodos diferentes estilo GET E POST
     
     var {title,price,year} = req.body //req.body serve para qualquer dado que serve para requisição post
 
@@ -95,7 +122,7 @@ app.post("/game",(req,res) => { //pode existir a mesma rota porem com metodos di
 
 })
 
-app.delete("/game/:id",(req, res) => { // igual o metodo get
+app.delete("/game/:id",auth,(req, res) => { // igual o metodo get
     if(isNaN(req.params.id)){
         res.sendStatus(400) // status que retorno quando ele não usar um numero
     }else{
