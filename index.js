@@ -86,7 +86,7 @@ var DB = {
 app.get("/games",auth,(req,res) => { //get para pegar dados, quandoa rota for acessada,ela pega todas as listagens
     
     res.statusCode = 200 //significa que arota foi criado com sucesso
-    res.json({empresa: req.empresa , user: req.loggerUser , games: DB.games}) //vai acessar a listagem de games, pois o DB.games é a variavel
+    res.json(DB.games) //vai acessar a listagem de games, pois o DB.games é a variavel
 })
 
 app.get("/game/:id",auth, (req,res) =>{
