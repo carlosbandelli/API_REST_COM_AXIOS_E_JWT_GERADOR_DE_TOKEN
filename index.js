@@ -84,6 +84,28 @@ var DB = {
 
 
 app.get("/games",auth,(req,res) => { //get para pegar dados, quandoa rota for acessada,ela pega todas as listagens
+
+    var HATEOS = [
+        {
+            href: "http://localhost:45679/game/0",
+            method: "DELETE",
+            rel: "delete_game"
+
+        },
+        {
+            href: "http://localhost:45679/game/0",
+            method: "GET",
+            rel: "get_game"
+
+        },
+        {
+            href: "http://localhost:45679/game/0",
+            method: "DELETE",
+            rel: "delete_game"
+
+        }
+
+    ]
     
     res.statusCode = 200 //significa que arota foi criado com sucesso
     res.json(DB.games) //vai acessar a listagem de games, pois o DB.games é a variavel
