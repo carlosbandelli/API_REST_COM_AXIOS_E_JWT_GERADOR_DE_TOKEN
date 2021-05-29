@@ -1,0 +1,7 @@
+o que é hateoas?
+È um recurso que																	x' voce vai implementar em sua API REST quando termina-la, o Hateoas é o ultimo passo para inplemntar em sua API rest
+quando voce adciona uma HATEOAS voce basicamente cria uma rest full
+
+hateoas traz o recurso de hiperlink.
+
+ 
