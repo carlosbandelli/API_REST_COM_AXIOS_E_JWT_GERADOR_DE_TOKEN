@@ -99,17 +99,17 @@ app.get("/games",auth,(req,res) => { //get para pegar dados, quandoa rota for ac
 
         },
         {
-            href: "http://localhost:45679/game/0",
-            method: "DELETE",
-            rel: "delete_game"
+            href: "http://localhost:45679/auth",
+            method: "POST",
+            rel: "login"
 
         }
 
     ]
     
     res.statusCode = 200 //significa que arota foi criado com sucesso
-    res.json(DB.games) //vai acessar a listagem de games, pois o DB.games é a variavel
-})
+    res.json({games:DB.games, _links: HATEOS }) //vai acessar a listagem de games, pois o DB.games é a variavel
+})                         // ONDE COLOCAMOS NOSSO HATEOAS
 
 app.get("/game/:id",auth, (req,res) =>{
     if(isNaN(req.params.id)){
@@ -117,6 +117,8 @@ app.get("/game/:id",auth, (req,res) =>{
     }else{
 
         var id = parseInt(req.params.id)// conversão do id para numero inteiro
+
+        
 
         var game = DB.games.find(g => g.id == id) //
 
