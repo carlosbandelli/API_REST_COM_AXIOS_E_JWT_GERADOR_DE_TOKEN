@@ -4,4 +4,11 @@ quando voce adciona uma HATEOAS voce basicamente cria uma rest full
 
 hateoas traz o recurso de hiperlink.
 
+Vantagens:
+- Uma delas é facilitar a vida de quem vai consumir sua api, quando ela consumo, logo de cara ela vai ver um monte de link
+que ja pode efetuar varias açoes.
+e logo de cara ela vai entender com ela funciona e vai conhecer varias funcionalidade da sua api sem que ela precise ler
+a documentação
+
+- a maior vantagens quando voce desaclopa seu back- end do front-end
  
